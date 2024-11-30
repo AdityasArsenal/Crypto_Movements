@@ -1,19 +1,16 @@
 import pandas as pd
 import requests
 import time
-import pickle
 
 url = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest"
 
 head = {
-    "X-CMC_PRO_API_KEY": "99b495dd-1690-4354-834d-3fadaf8bfb7b"
+    "X-CMC_PRO_API_KEY": "fa2d2137-7fd2-4240-8db6-a5f67ed36ac4"
 }
-
-num = 4
 
 params = {
     "sort": "market_cap",
-    "limit":num
+    "limit": 7
 }
 
 def get_info():
@@ -25,15 +22,29 @@ def get_info():
     else:
         print(f"Error: {response.status_code}, {response.text}")
 
+list_of_names = []
+list_of_symboles = []
+list_of_prices = [] 
+list_of_vlos = []
+list_of_percentage_changes = []
+list_of_market_cap = []
 
-def update_excel():
+def data_ana():
+    list_of_top5 = list_of_names[0:5]
+    print(f"List of top 5 market cap coins : {list_of_top5}")
+
+    higest_percentage = max(list_of_percentage_changes)
+    index_hi = list_of_percentage_changes.index(higest_percentage)
+    higest_percentage_coin = list_of_names[index_hi]
+    print(f"{higest_percentage_coin} has the higest, with :{higest_percentage}change")
+
+    lowest_percentage = min(list_of_percentage_changes)
+    index_lo = list_of_percentage_changes.index(lowest_percentage)
+    lowest_percentage_coin = list_of_names[index_lo]
+    print(f"{lowest_percentage_coin} has the lowest, with :{lowest_percentage}change")
+
+def data_to_list():
     dataaa = get_info()
-    list_of_names = []
-    list_of_symboles = []
-    list_of_prices = [] 
-    list_of_vlos = []
-    list_of_percentage_changes = []
-    list_of_market_cap = []
 
     #pprint.pprint(dataaa['data'])
 
@@ -49,9 +60,14 @@ def update_excel():
         list_of_market_cap.append(coin['quote']['USD']['market_cap'])
         
         print("🟣🟣🟣🟣🟣🟣")
+
+
+def update_excel():
+    data_to_list()
     
-    with open('market_caps.pkl', 'wb') as f:
-        pickle.dump(list_of_market_cap, f)
+    list_of_top5 = list_of_names[0:5]
+    higest_percentage = max(list_of_percentage_changes)
+    lowest_percentage = min(list_of_percentage_changes)
 
     data = {
         'Name': list_of_names,
@@ -59,7 +75,8 @@ def update_excel():
         'Price': list_of_prices,
         'MCap': list_of_market_cap,
         '24change':list_of_percentage_changes,
-        'vlos':list_of_vlos
+        'vlos':list_of_vlos,
+        
     }
 
     # Converted the dictionary into a pandas DataFrame
@@ -67,13 +84,4 @@ def update_excel():
 
     df.to_excel('crypto_data.xlsx', index=False)
 
-try:
-    while True:
-        update_excel()
-        print("Excel file created successfully!")
-        time.sleep(70)
-except:
-    print("Stopped updating due to API overvelmed")
-
-# Save the list of market caps using pickle
 
