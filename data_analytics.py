@@ -1,6 +1,6 @@
 
 def data_ana(list_of_names , list_of_symboles, list_of_prices, list_of_vlos, list_of_percentage_changes, list_of_market_cap):
-    
+
     list_of_top5 = list_of_names[0:5]
     print(f"List of top 5 market cap coins : {list_of_top5}")
 
@@ -13,3 +13,5 @@ def data_ana(list_of_names , list_of_symboles, list_of_prices, list_of_vlos, lis
     index_lo = list_of_percentage_changes.index(lowest_percentage)
     lowest_percentage_coin = list_of_names[index_lo]
     print(f"{lowest_percentage_coin} has the lowest, with :{lowest_percentage}change")
+
+    print("3rd🟡🟡🟡🟡🟡🟡🟡3rd")

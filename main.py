@@ -1,23 +1,23 @@
 import time as tt
-from excel_handl import update_excel
-from get_list import data_to_list
-from excel_handl import update_excel
-from data_ana import data_ana
- 
-
+from API_call import get_info
+from add_data_to_list import data_to_list
+from data_analytics import data_ana
+from excelsheet_maker import update_excel
 
 #print(type(litss))
 #print(*tuplee_of_data)
 
-
 try:
     while True:
         # Update the Excel file
-        tuplee_of_data = data_to_list()
+        datt = get_info()
+
+        tuplee_of_data = data_to_list(datt)
 
         data_ana(*tuplee_of_data)
 
         update_excel(*tuplee_of_data)
+
         print("Excel file created successfully!")
 
         # Wait for the next update
