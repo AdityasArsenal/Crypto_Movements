@@ -1,9 +1,3 @@
-import time as tt
-from newrough import update_excel, data_ana, data_to_list
-from pydrive.auth import GoogleAuth
-from pydrive.drive import GoogleDrive
-
-
 try:
     while True:
         # Update the Excel file
@@ -18,4 +12,3 @@ except Exception as e:
 
 
 data_ana()
-data_to_list()
