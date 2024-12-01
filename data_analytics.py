@@ -1,4 +1,3 @@
-
 def data_ana(list_of_names , list_of_symboles, list_of_prices, list_of_vlos, list_of_percentage_changes, list_of_market_cap):
 
     list_of_top5 = list_of_names[0:5]

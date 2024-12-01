@@ -1,5 +1,5 @@
 import time as tt
-from API_call import get_info
+from API_calls import get_info
 from add_data_to_list import data_to_list
 from data_analytics import data_ana
 from excelsheet_maker import update_excel
