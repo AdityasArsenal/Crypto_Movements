@@ -7,7 +7,6 @@ url = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest"
 head = {
     "X-CMC_PRO_API_KEY": "fa2d2137-7fd2-4240-8db6-a5f67ed36ac4"
 }
-
 params = {
     "sort": "market_cap",
     "limit": 7
@@ -68,7 +67,6 @@ def update_excel():
     df.to_excel('crypto_data.xlsx', index=False)
 
 def data_ana():
-    data_to_list()
     list_of_top5 = list_of_names[0:5]
     print(f"List of top 5 market cap coins : {list_of_top5}")
 
@@ -82,3 +80,5 @@ def data_ana():
     lowest_percentage_coin = list_of_names[index_lo]
     print(f"{lowest_percentage_coin} has the lowest, with :{lowest_percentage}change")
 
+data_to_list()
+data_ana()
