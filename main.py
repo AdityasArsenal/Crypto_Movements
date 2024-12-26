@@ -21,7 +21,7 @@ try:
         print("Excel file created successfully!")
 
         # Wait for the next update
-        tt.sleep(70)
+        tt.sleep(10)
 
 except Exception as e:
     print(f"Stopped updating due to: {e}")

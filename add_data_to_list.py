@@ -1,5 +1,3 @@
-import pandas as pd
-
 def data_to_list(datt):
     dataaa = datt
 
@@ -9,7 +7,6 @@ def data_to_list(datt):
     list_of_vlos = []
     list_of_percentage_changes = []
     list_of_market_cap = []
-
 
     #pprint.pprint(dataaa['data'])
 
